@@ -1,3 +1,28 @@
+var storage;
+
+function init(){
+    document.addEventListener("deviceready", onDeveiceReady,false);
+    storage = window.localStorage;
+}
+
+function onDeviceReady() {
+    var node = document.createElement("link");
+    node.setAttribute("rel","stylesheet");
+    node.setAttribute("type", "text/css");
+
+    if(cordova.platformid == 'ios'){
+        node.setAttribute("href","styles/park-it-ios.css");
+
+        window.StatusBar.overlaysWebView(false);
+        window.StatusBar.styleDefault();
+    } else {
+        node.setAttribute("href", "styles/park-it-android.css");
+        window.StatusBar.backgroundColorByHexString("#1565C0");
+    }
+
+    $('head').appendChild(node);
+}
+
 function initMap(){
     var grc = {lat: 47.313582, lng: -122.1800072};
 
